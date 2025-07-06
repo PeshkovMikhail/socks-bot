@@ -11,9 +11,8 @@ COPY ./src /ros2_ws/src
 WORKDIR /ros2_ws
 
 # Собираем workspace
-RUN . /opt/ros/jazzy/setup.sh && \
-    rosdep install -i --from-path src --rosdistro jazzy -y && \
-    colcon build
+RUN apt update && rosdep install -i --from-path src --rosdistro jazzy -y
+RUN . /opt/ros/jazzy/setup.sh && colcon build
 
 # Устанавливаем entrypoint для активации окружения
 COPY ./entrypoint.sh /entrypoint.sh
