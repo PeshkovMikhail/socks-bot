@@ -32,7 +32,7 @@ def generate_launch_description():
                                             description='Absolute path to robot urdf file'),
         launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='True',
                                             description='Flag to enable use_sim_time'),
-        launch.actions.DeclareLaunchArgument(name="serial_port", default="/dev/AMA2",
+        launch.actions.DeclareLaunchArgument(name="serial_port", default_value="/dev/AMA4",
                                             description='esp32 serial port'),
         Node(
             package='micro_ros_agent',
