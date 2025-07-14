@@ -38,7 +38,7 @@ def generate_launch_description():
             package='micro_ros_agent',
             executable='micro_ros_agent',
             name='micro_ros_agent',
-            arguments=["serial", "--dev", LaunchConfiguration('serial_port'), "-v", "6"]
+            arguments=["serial", "--dev", LaunchConfiguration('serial_port'), "-v6"]
         ),
         Node(
             package='board_rebooter',
@@ -54,5 +54,5 @@ def generate_launch_description():
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([get_package_share_directory("slam_toolbox"), '/launch/online_async_launch.py']),
             launch_arguments = {'params_file': os.path.join(pkg_share, 'config/slam_config.yaml')}.items()
-        )
+        ),
     ])
