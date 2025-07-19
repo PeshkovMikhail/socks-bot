@@ -41,6 +41,11 @@ def generate_launch_description():
             arguments=["serial", "--dev", LaunchConfiguration('serial_port'), "-v6"]
         ),
         Node(
+            package='lds01rr',
+            executable='lds01rr',
+            parameters=[{"uart_port":"/dev/ttyAMA5"}]
+        ),
+        Node(
             package='board_rebooter',
             executable="board_rebooter",
         ),

@@ -2,3 +2,6 @@
 	path = src/micro-ROS-Agent
 	url = https://github.com/micro-ROS/micro-ROS-Agent.git
 	branch = jazzy
+[submodule "src/ros2_lidar"]
+	path = src/ros2_lidar
+	url = git@github.com:PeshkovMikhail/ros2_lidar.git
