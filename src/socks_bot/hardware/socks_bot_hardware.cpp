@@ -38,6 +38,19 @@ std::vector<hardware_interface::CommandInterface> SocksBotHardware::export_comma
   return command_interfaces;
 }
 
+
+hardware_interface::CallbackReturn SocksBotHardware::on_activate(const rclcpp_lifecycle::State & previous_state)
+{
+    RCLCPP_INFO(node_->get_logger(), "Activating hardware");
+    return hardware_interface::CallbackReturn::SUCCESS;
+}
+
+hardware_interface::CallbackReturn SocksBotHardware::on_deactivate(const rclcpp_lifecycle::State &previous_state)
+{
+    RCLCPP_INFO(node_->get_logger(), "Deactivating hardware");
+    return hardware_interface::CallbackReturn::SUCCESS;
+}
+
 hardware_interface::return_type SocksBotHardware::read(const rclcpp::Time &time, const rclcpp::Duration &period)
 {
     return hardware_interface::return_type::OK;
@@ -66,5 +79,6 @@ void SocksBotHardware::wheel_state_callback(const std_msgs::msg::Float32MultiArr
 }
 
 #include "pluginlib/class_list_macros.hpp"
+
 PLUGINLIB_EXPORT_CLASS(
   socks_bot::SocksBotHardware, hardware_interface::SystemInterface)
