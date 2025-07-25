@@ -64,3 +64,7 @@ void SocksBotHardware::wheel_state_callback(const std_msgs::msg::Float32MultiArr
     right_vel_ = (right_wheel_rpm / 60.0) * (2.0 * M_PI * wheel_radius_);
 }
 }
+
+#include "pluginlib/class_list_macros.hpp"
+PLUGINLIB_EXPORT_CLASS(
+  socks_bot::SocksBotHardware, hardware_interface::SystemInterface)
