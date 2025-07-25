@@ -33,6 +33,16 @@ install(
   DIRECTORY hardware/include/
   DESTINATION include/${PROJECT_NAME}
 )
+
+install(
+  DIRECTORY description
+  DESTINATION share/${PROJECT_NAME}
+)
+install(
+  DIRECTORY bringup/launch bringup/config
+  DESTINATION share/${PROJECT_NAME}
+)
+
 install(
   TARGETS socks_bot_hardware
   EXPORT export_${PROJECT_NAME}
