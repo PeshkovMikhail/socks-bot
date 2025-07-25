@@ -45,7 +45,7 @@ hardware_interface::return_type SocksBotHardware::read(const rclcpp::Time &time,
 
 hardware_interface::return_type SocksBotHardware::write(const rclcpp::Time &time, const rclcpp::Duration &period)
 {
-    std_msgs::msg::Float64MultiArray cmd;
+    std_msgs::msg::Float32MultiArray cmd;
     cmd.data = { left_cmd_, right_cmd_ };
     command_pub_->publish(cmd);
     return hardware_interface::return_type::OK;
