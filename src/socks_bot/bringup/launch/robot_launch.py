@@ -21,6 +21,13 @@ def generate_launch_description():
         ]
     )
 
+    control_node = Node(
+        package="controller_manager",
+        executable="ros2_control_node",
+        parameters=[robot_controllers],
+        output="both",
+    )
+
     robot_state_publisher_node = launch_ros.actions.Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -69,9 +76,10 @@ def generate_launch_description():
             package='board_rebooter',
             executable="board_rebooter",
         ),
-
+        control_node,
         joint_state_publisher_node,
         robot_state_publisher_node,
+        robot_controller_spawner,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([get_package_share_directory("slam_toolbox"), '/launch/online_async_launch.py']),
             launch_arguments = {'params_file': os.path.join(pkg_share, 'config/slam_config.yaml')}.items()
