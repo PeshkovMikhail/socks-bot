@@ -28,6 +28,7 @@ ament_target_dependencies(
 # Causes the visibility macros to use dllexport rather than dllimport,
 # which is appropriate when building the dll but not consuming it.
 target_compile_definitions(socks_bot_hardware PRIVATE "SOCKS_BOT_BUILDING_LIBRARY")
+pluginlib_export_plugin_description_file(socks_bot_hardware socks_bot_hardware.xml)
 
 install(
   DIRECTORY hardware/include/
