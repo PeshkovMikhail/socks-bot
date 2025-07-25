@@ -12,8 +12,7 @@ find_package(rclcpp REQUIRED)
 find_package(hardware_interface REQUIRED)
 find_package(pluginlib REQUIRED)
 
-add_library(socks_bot_hardware hardware/socks_bot_hardware.cpp)
-add_library(socks_bot::socks_bot_hardware ALIAS socks_bot_hardware)
+add_library(socks_bot_hardware SHARED hardware/socks_bot_hardware.cpp)
 target_compile_features(socks_bot_hardware PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 target_include_directories(socks_bot_hardware PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/hardware/include>
@@ -27,8 +26,7 @@ ament_target_dependencies(
 
 # Causes the visibility macros to use dllexport rather than dllimport,
 # which is appropriate when building the dll but not consuming it.
-target_compile_definitions(socks_bot_hardware PRIVATE "SOCKS_BOT_BUILDING_LIBRARY")
-pluginlib_export_plugin_description_file(socks_bot_hardware socks_bot_hardware.xml)
+pluginlib_export_plugin_description_file(hardware_interface socks_bot_hardware.xml)
 
 install(
   DIRECTORY hardware/include/

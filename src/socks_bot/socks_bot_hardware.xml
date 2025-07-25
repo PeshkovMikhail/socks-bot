@@ -1,4 +1,4 @@
-<library path="socks_bot">
+<library path="socks_bot_hardware">
   <class name="socks_bot/SocksBotHardware"
          type="socks_bot::SocksBotHardware"
          base_class_type="hardware_interface::SystemInterface">
