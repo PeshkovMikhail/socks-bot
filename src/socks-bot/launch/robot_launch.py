@@ -26,11 +26,11 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        launch.actions.DeclareLaunchArgument(name='gui', default_value='True',
+        launch.actions.DeclareLaunchArgument(name='gui', default_value='False',
                                             description='Flag to enable joint_state_publisher_gui'),
         launch.actions.DeclareLaunchArgument(name='model', default_value=default_model_path,
                                             description='Absolute path to robot urdf file'),
-        launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='True',
+        launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='False',
                                             description='Flag to enable use_sim_time'),
         launch.actions.DeclareLaunchArgument(name="serial_port", default_value="/dev/ttyAMA4",
                                             description='esp32 serial port'),
@@ -58,6 +58,6 @@ def generate_launch_description():
         robot_state_publisher_node,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([get_package_share_directory("slam_toolbox"), '/launch/online_async_launch.py']),
-            launch_arguments = {'params_file': os.path.join(pkg_share, 'config/slam_config.yaml')}.items()
+            launch_arguments = {'params_file': os.path.join(pkg_share, 'config/slam_config.yaml'), 'use_sim_time':'false'}.items()
         ),
     ])
