@@ -15,8 +15,6 @@ hardware_interface::CallbackReturn SocksBotHardware::on_init(const hardware_inte
     command_pub_ = node_->create_publisher<std_msgs::msg::Float32MultiArray>("wheel_rpm", 10);
     wheel_state_sub_ = node_->create_subscription<std_msgs::msg::Float32MultiArray>("wheel_state",
         10, std::bind(&socks_bot::SocksBotHardware::wheel_state_callback, this, std::placeholders::_1));
-    RCLCPP_INFO(node_->get_logger(), 
-                "Wheel radius: %f m, separation: %f m", wheel_radius_, wheel_separation_);
     return hardware_interface::CallbackReturn::SUCCESS;
 }
 
@@ -53,6 +51,7 @@ hardware_interface::CallbackReturn SocksBotHardware::on_deactivate(const rclcpp_
 
 hardware_interface::return_type SocksBotHardware::read(const rclcpp::Time &time, const rclcpp::Duration &period)
 {
+    rclcpp::spin_some(node_);
     return hardware_interface::return_type::OK;
 }
 
@@ -71,10 +70,10 @@ void SocksBotHardware::wheel_state_callback(const std_msgs::msg::Float32MultiArr
     float right_wheel_rpm = msg->data[2];
     float right_wheel_angle = msg->data[3];
 
-    left_pos_ = left_wheel_angle*wheel_radius_;
-    left_vel_ = (left_wheel_rpm / 60.0) * (2.0 * M_PI * wheel_radius_);
-    right_pos_ = right_wheel_angle*wheel_radius_;
-    right_vel_ = (right_wheel_rpm / 60.0) * (2.0 * M_PI * wheel_radius_);
+    left_pos_ = left_wheel_angle;
+    left_vel_ = left_wheel_rpm;
+    right_pos_ = right_wheel_angle;
+    right_vel_ = right_wheel_rpm;
 }
 }
 

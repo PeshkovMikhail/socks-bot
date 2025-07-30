@@ -160,7 +160,9 @@
 
   <ros2_control name="MyRobotSystem" type="system">
     <hardware>
-      <plugin>socks_bot/SocksBotHardware</plugin>
+	    <plugin>socks_bot/SocksBotHardware</plugin>
+	    <param name="wheel_radius">0.0325</param>
+	    <param name="wheel_separation">0.175</param>
     </hardware>
     <joint name="wheel_left_joint">
       <command_interface name="velocity"/>
