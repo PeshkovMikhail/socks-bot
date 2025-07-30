@@ -1,0 +1,8 @@
+uint8 address
+uint8 register
+uint8[] data
+bool read
+uint8 read_length
+---
+bool success
+uint8[] response
