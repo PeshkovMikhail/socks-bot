@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+<xacro:macro name="wheel" params="side parent">
+  <xacro:property name="PI" value="3.141592653589793"/>
+  <xacro:property name="HALF_PI" value="${PI/2}"/>
+  <xacro:if value="${side == 'left'}">
+    <xacro:property name="sign" value="-1"/> 
+  </xacro:if>
+  <xacro:if value="${side == 'right'}">
+    <xacro:property name="sign" value="1"/>
+  </xacro:if>
+  <link name="wheel_${side}_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="wheel.stl"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="wheel.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1"/>
+    </inertial>
+  </link>
+
+  <joint name="wheel_${side}_joint" type="continuous">
+    <parent link="${parent}"/>
+    <child link="wheel_${side}_link"/>
+    <origin xyz="${sign*0.102} 0.034 ${(22.5/2+5)/1000}" rpy="0 ${sign*HALF_PI} 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+</xacro:macro>
+</robot>

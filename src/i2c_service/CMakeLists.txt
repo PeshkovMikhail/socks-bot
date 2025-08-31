@@ -32,6 +32,5 @@ endif()
 add_executable(i2c_service_server src/i2c_service_server.cpp)
 ament_target_dependencies(i2c_service_server rclcpp)
 target_link_libraries(i2c_service_server ${cpp_typesupport_target})
-rosidl_target_interfaces(i2c_service_server ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
 ament_package()
